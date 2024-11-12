@@ -5,6 +5,8 @@ class Login {
   setUsername(username) {
     cy.get("#outlined-basic").type(username);
   }
+
+  
   setPassword(password) {
     cy.get("#password").type(password);
   }
@@ -18,6 +20,14 @@ class Login {
       "eq",
       "https://polaris-qa-evp.eloci.us/main/devices"
     );
+  }
+
+  clickSymbolForLogOut(){
+    cy.xpath("//div[@class='profileadownicon']//*[name()='svg']").click();
+  }
+
+  clickLogoutButton(){
+    cy.get("li:nth-child(4)").click();
   }
 }
 

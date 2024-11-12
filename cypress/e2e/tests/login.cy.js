@@ -13,19 +13,19 @@ describe("Login Test", () => {
     // Load data from fixture file
     cy.fixture("LoginQA").then((data) => {
       cy.visit("https://polaris-qa-evp.eloci.us/");
-
       const ln = new Login();
-
       // Wait for the username field to be visible before interacting
       ln.checkCardContent();
-
       // Use fixture data for username and password
       ln.setUsername(data.username);
       ln.setPassword(data.password);
       ln.clickLogin();
-
-      // Verify successful login by checking a specific element on the next page
       ln.verifyLogin();
+      ln.clickSymbolForLogOut();
+      ln.clickLogoutButton();
+      cy.wait(2000);
     });
   });
+
+  
 });

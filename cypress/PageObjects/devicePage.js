@@ -92,27 +92,41 @@ class DevicePage {
 //     });
 //   }
   
-FetchSerialNumbers() {
-    const serialNumbersSet = new Set();  // To track unique serial numbers
+// FetchSerialNumbers() {
+//     const serialNumbersSet = new Set();  // To track unique serial numbers
   
-    // Iterate over all rows in the table and target only the 3rd column (Serial Number)
-    cy.get("div[class='devicesbottom'] table>tbody>tr").each(($row) => {
-      // Use nth-child(3) to directly select the third column in each row
-      cy.wrap($row).find("td:nth-child(3)").then(($col) => {
-        const serialNumber = $col.text().trim();  // Extract and trim the text
+//     // Iterate over all rows in the table and target only the 3rd column (Serial Number)
+//     cy.get("div[class='devicesbottom'] table>tbody>tr").each(($row) => {
+//       // Use nth-child(3) to directly select the third column in each row
+//       cy.wrap($row).find("td:nth-child(3)").then(($col) => {
+//         const serialNumber = $col.text().trim();  // Extract and trim the text
   
-        // Check if the serial number is already in the set
-        if (serialNumbersSet.has(serialNumber)) {
-          cy.log("Duplicate Serial Number found: " + serialNumber);
-        } else {
-          // Add the serial number to the set if it's unique
-          serialNumbersSet.add(serialNumber);
-          cy.log("Serial Number: " + serialNumber);  // Log the unique serial number
-        }
-      });
-    });
+//         // Check if the serial number is already in the set
+//         if (serialNumbersSet.has(serialNumber)) {
+//           cy.log("Duplicate Serial Number found: " + serialNumber);
+//         } else {
+//           // Add the serial number to the set if it's unique
+//           serialNumbersSet.add(serialNumber);
+//           cy.log("Serial Number: " + serialNumber);  // Log the unique serial number
+//         }
+//       });
+//     });
+//   }
+  
+  
+
+  verifyToastMsgWithoutAddingDataInAddDevicesTab(){
+    cy.get("div[class='mainbelowsection'] div div[class='notifiactionmessage-component subaccountcreatedcls undefined']").should("have.text","Please enter valid details!")
   }
-  
+
+  clickXIconOfAddDevicesTab(){
+    cy.get(".MuiSvgIcon-root.devdetailsclosecls").click();
+  }
+
+  verifyToastMsgWithoutEnteringSerialNumberInAddDevicesTab(){
+    cy.get("div[class='mainbelowsection'] div div[class='notifiactionmessage-component subaccountcreatedcls undefined']")
+    .should("have.text","Enter valid details or delete the row")
+  }
   
   
   
