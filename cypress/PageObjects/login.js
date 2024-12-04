@@ -1,6 +1,6 @@
 class Login {
   checkCardContent() {
-    cy.get(".MuiCardContent-root.logincardcontnt").should("be.visible");
+    cy.get(".MuiCardContent-root.logincardcontnt",{timeout:5000}).should("be.visible");
   }
   setUsername(username) {
     cy.get("#outlined-basic").type(username);

@@ -7,3 +7,9 @@ module.exports = defineConfig({
     },
   },
 });
+
+module.exports = {
+  e2e: {
+      testIsolation: false,
+  },
+};
